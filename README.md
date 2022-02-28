@@ -14,5 +14,4 @@ bmp2PCE -LXxx -LYxx infile.bmp <outfile.bin>
    infile.bmp   BMP Filename.
 
    outfile.bin  Optional.
-   
-                 In that case, the name of "infile.bin" will be the file nam
+ 
