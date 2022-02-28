@@ -6,8 +6,13 @@ Graphic converter.  BMP Graphic File (256color or 16colr) ---> PCEngine Graphic 
 command line
 
 bmp2PCE -LXxx -LYxx infile.bmp <outfile.bin>
-    -LXxx  Sprite aeria X Length. default=16
-    -LYxx  Sprite aeria Y Length. default=16
-    infile.bmp   BMP Filename.
-    outfile.bin  Optional.
+
+   -LXxx  Sprite aeria X Length. default=16
+
+   -LYxx  Sprite aeria Y Length. default=16
+
+   infile.bmp   BMP Filename.
+
+   outfile.bin  Optional.
+   
                  In that case, the name of "infile.bin" will be the file nam
