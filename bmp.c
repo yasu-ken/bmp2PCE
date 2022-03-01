@@ -1,4 +1,5 @@
 
+
 //===============================================================================
 // 
 //===============================================================================
@@ -10,31 +11,31 @@
 //===============================================================================
 // BMP Hedder
 //===============================================================================
-//ƒwƒbƒ_ŠÛ‚²‚Æ“Ç‚İ‚Ü‚¸A€–Úˆê‚Â‚¸‚Â“Ç‚İ‚Ü‚·(ƒAƒ‰ƒCƒ“ƒƒ“ƒg‚Ì‚½‚ß‚¸‚ê‚Ä‚µ‚Ü‚¤)
+//ãƒ˜ãƒƒãƒ€ä¸¸ã”ã¨èª­ã¿è¾¼ã¾ãšã€é …ç›®ä¸€ã¤ãšã¤èª­ã¿ã¾ã™(ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã®ãŸã‚ãšã‚Œã¦ã—ã¾ã†)
 struct BMAPHEADER_2 {
-	unsigned char   bfType0;        //1 ƒf[ƒ^Œ`®(B)
-	unsigned char   bfType1;        //1 ƒf[ƒ^Œ`®(M)
-	unsigned long   bfSize;         //4 ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	unsigned short  bfReserved1;    //2 —\–ñ
-	unsigned short  bfReserved2;    //2 —\–ñ
-	unsigned long   bfOffBits;      //4 ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌŠJnƒIƒtƒZƒbƒg
-	unsigned long   biSize;         //4 ƒwƒbƒ_[‚ÌƒTƒCƒYiˆÈ‰º‚Ìƒf[ƒ^j
-	long            biWidth;        //4 …•½ƒhƒbƒg”
-	long            biHeight;       //4 ‚’¼ƒhƒbƒg”
-	unsigned short  biPlanes;       //2 ƒvƒŒ[ƒ“”
-	unsigned short  biBitCount;     //2 ‚PƒsƒNƒZƒ‹“–‚½‚è‚Ìƒrƒbƒg”(8)
-	unsigned long   biCompression;  //4 ˆ³kŒ`®i‚O–³‚µj
-	unsigned long   biSizeImage;    //4 ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY
-	long            biXPixPerMeter; //4 …•½‰ğ‘œ“x
-	long            biYPixPerMeter; //4 ‚’¼‰ğ‘œ“x
-	unsigned long   biClrUsed;      //4 g—pF”
-	unsigned long   biClrImporant;  //4 d—v‚ÈFH
-	unsigned char   palet[256][4];  //  1024 256FƒpƒŒƒbƒg ÂA—ÎAÔA—\–ñ(0)‚Ì‡”Ô
+	unsigned char   bfType0;        //1 ãƒ‡ãƒ¼ã‚¿å½¢å¼(B)
+	unsigned char   bfType1;        //1 ãƒ‡ãƒ¼ã‚¿å½¢å¼(M)
+	unsigned long   bfSize;         //4 ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	unsigned short  bfReserved1;    //2 äºˆç´„
+	unsigned short  bfReserved2;    //2 äºˆç´„
+	unsigned long   bfOffBits;      //4 ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	unsigned long   biSize;         //4 ãƒ˜ãƒƒãƒ€ãƒ¼ã®ã‚µã‚¤ã‚ºï¼ˆä»¥ä¸‹ã®ãƒ‡ãƒ¼ã‚¿ï¼‰
+	long            biWidth;        //4 æ°´å¹³ãƒ‰ãƒƒãƒˆæ•°
+	long            biHeight;       //4 å‚ç›´ãƒ‰ãƒƒãƒˆæ•°
+	unsigned short  biPlanes;       //2 ãƒ—ãƒ¬ãƒ¼ãƒ³æ•°
+	unsigned short  biBitCount;     //2 ï¼‘ãƒ”ã‚¯ã‚»ãƒ«å½“ãŸã‚Šã®ãƒ“ãƒƒãƒˆæ•°(8)
+	unsigned long   biCompression;  //4 åœ§ç¸®å½¢å¼ï¼ˆï¼ï¼ç„¡ã—ï¼‰
+	unsigned long   biSizeImage;    //4 ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	long            biXPixPerMeter; //4 æ°´å¹³è§£åƒåº¦
+	long            biYPixPerMeter; //4 å‚ç›´è§£åƒåº¦
+	unsigned long   biClrUsed;      //4 ä½¿ç”¨è‰²æ•°
+	unsigned long   biClrImporant;  //4 é‡è¦ãªè‰²ï¼Ÿ
+	unsigned char   palet[256][4];  //  1024 256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆ é’ã€ç·‘ã€èµ¤ã€äºˆç´„(0)ã®é †ç•ª
 }BitmapHedder;
 
 
 //===============================================================================
-// •Ï”
+// å¤‰æ•°
 //===============================================================================
 int ReadSize;
 int BmpWidth;
@@ -43,12 +44,12 @@ int BmpHeight;
 unsigned char BmpBuff[0x40000];
 
 //===============================================================================
-// ŠÖ”
+// é–¢æ•°
 //===============================================================================
 
 
 //**************************************
-// BMPƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+// BMPãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 //**************************************
 
 int Read_BMP( FILE *fp )
@@ -75,7 +76,7 @@ int Read_BMP( FILE *fp )
 	fread(&BitmapHedder.biClrImporant  , 1,4,fp);
 	//fread(&BitmapHedder.palet          , 1,1024,fp);
 
-	//Fƒrƒbƒg‚ª8(256F)‚Å‚È‚­A4(16F)‚Å‚à‚È‚¢‚Æ‚«
+	//è‰²ãƒ“ãƒƒãƒˆãŒ8(256è‰²)ã§ãªãã€4(16è‰²)ã§ã‚‚ãªã„ã¨ã
 	if( BitmapHedder.biBitCount != 8 )
 	{
 		if( BitmapHedder.biBitCount != 4 )
@@ -97,12 +98,12 @@ int Read_BMP( FILE *fp )
 
 	ReadSize  =  BmpWidth* BmpHeight;
 
-	//BmpBuff   =  new char[ReadSize];   //¦new‚µ‚Ä‚¢‚Ü‚·
+	//BmpBuff   =  new char[ReadSize];   //â€»newã—ã¦ã„ã¾ã™
 
 	fread( BmpBuff,1,ReadSize,fp);
 
 
-	//bmp‚ªã‰º‹t‚É‚È‚Á‚Ä‚é‚½‚ßA‚³‚ç‚Éã‰º‹t‚É‚µ‚Ü‚·B
+	//bmpãŒä¸Šä¸‹é€†ã«ãªã£ã¦ã‚‹ãŸã‚ã€ã•ã‚‰ã«ä¸Šä¸‹é€†ã«ã—ã¾ã™ã€‚
 	//bmp is upside down, so turn it upside down.
 	for( i= 0; i<(ReadSize/2); i+=BmpWidth ) //line
 	{
@@ -119,9 +120,9 @@ int Read_BMP( FILE *fp )
 
 
 //**************************************
-// BMPƒtƒ@ƒCƒ‹‘‚«‚İ
+// BMPãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿
 //**************************************
-//‚·‚Å‚Éƒwƒbƒ_•”A‰æ‘œƒf[ƒ^•”‚Éƒf[ƒ^‚ªƒZƒbƒg‚µ‚Ä‚ ‚é‚±‚Æ
+//ã™ã§ã«ãƒ˜ãƒƒãƒ€éƒ¨ã€ç”»åƒãƒ‡ãƒ¼ã‚¿éƒ¨ã«ãƒ‡ãƒ¼ã‚¿ãŒã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ã“ã¨
 
 void Write_BMP( char * filename)
 {
@@ -153,7 +154,7 @@ void Write_BMP( char * filename)
 	fwrite(&BitmapHedder.biClrImporant  , 1,4,fp);
 	//fwrite(&BitmapHedder.palet          , 1,1024,fp);
 
-	//Fƒrƒbƒg‚ª8(256F)‚Å‚È‚­A4(16F)‚Å‚à‚È‚¢‚Æ‚«
+	//è‰²ãƒ“ãƒƒãƒˆãŒ8(256è‰²)ã§ãªãã€4(16è‰²)ã§ã‚‚ãªã„ã¨ã
 	if( BitmapHedder.biBitCount != 8 )
 	{
 		if( BitmapHedder.biBitCount != 4 )
@@ -175,7 +176,7 @@ void Write_BMP( char * filename)
 
 	int i,j;
 	unsigned int wok;
-	//ƒoƒbƒtƒ@‚Íã‰º‹t‚Å‚Í‚È‚¢‚Ì‚ÅAã‰º‹t‚É‚µ‚Ü‚·
+	//ãƒãƒƒãƒ•ã‚¡ã¯ä¸Šä¸‹é€†ã§ã¯ãªã„ã®ã§ã€ä¸Šä¸‹é€†ã«ã—ã¾ã™
 	for( i= 0; i<(WriteSize/2); i+=BmpWidth ) //line
 	{
 		for( j=0; j<BmpWidth; j++ )  //yoko
@@ -192,33 +193,33 @@ void Write_BMP( char * filename)
 
 
 //************************************************************
-// BMPƒwƒbƒ_•”İ’è
+// BMPãƒ˜ãƒƒãƒ€éƒ¨è¨­å®š
 //************************************************************
 void Set_BMPHedder(int _wide, int _height, unsigned char *plette )
 {
 	BitmapHedder.bfType0       = 'B';
 	BitmapHedder.bfType1       = 'M';
-	//BitmapHedder.bfSize      = _wide*_height+(sizeof BMAPHEADER); //ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	BitmapHedder.bfSize        = _wide*_height+(14+40+1024); //ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	BitmapHedder.bfReserved1   = 0;        //—\–ñ
-	BitmapHedder.bfReserved2   = 0;        //—\–ñ
-	BitmapHedder.bfOffBits     = (14+40+1024);  //ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌŠJnƒIƒtƒZƒbƒg
-	BitmapHedder.biSize        = 0x28;     // 40;//ƒwƒbƒ_[‚ÌƒTƒCƒYiˆÈ‰º‚Ìƒf[ƒ^j
-	BitmapHedder.biWidth       = _wide;     // …•½ƒhƒbƒg”
-	BitmapHedder.biHeight      = _height;     // ‚’¼ƒhƒbƒg”
-	BitmapHedder.biPlanes      = 1;        // ƒvƒŒ[ƒ“”
-	BitmapHedder.biBitCount    = 8;        // ‚PƒsƒNƒZƒ‹“–‚½‚è‚Ìƒrƒbƒg”(8)
-	BitmapHedder.biCompression = 0;        // ˆ³kŒ`®i‚O–³‚µj
-	BitmapHedder.biSizeImage   = 0;        // ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY
-	BitmapHedder.biXPixPerMeter= 0;        // …•½‰ğ‘œ“x
-	BitmapHedder.biYPixPerMeter= 0;        // ‚’¼‰ğ‘œ“x
-	BitmapHedder.biClrUsed     = 256;      // g—pF”
-	BitmapHedder.biClrImporant = 0;        // d—v‚ÈFH
+	//BitmapHedder.bfSize      = _wide*_height+(sizeof BMAPHEADER); //ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	BitmapHedder.bfSize        = _wide*_height+(14+40+1024); //ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	BitmapHedder.bfReserved1   = 0;        //äºˆç´„
+	BitmapHedder.bfReserved2   = 0;        //äºˆç´„
+	BitmapHedder.bfOffBits     = (14+40+1024);  //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	BitmapHedder.biSize        = 0x28;     // 40;//ãƒ˜ãƒƒãƒ€ãƒ¼ã®ã‚µã‚¤ã‚ºï¼ˆä»¥ä¸‹ã®ãƒ‡ãƒ¼ã‚¿ï¼‰
+	BitmapHedder.biWidth       = _wide;     // æ°´å¹³ãƒ‰ãƒƒãƒˆæ•°
+	BitmapHedder.biHeight      = _height;     // å‚ç›´ãƒ‰ãƒƒãƒˆæ•°
+	BitmapHedder.biPlanes      = 1;        // ãƒ—ãƒ¬ãƒ¼ãƒ³æ•°
+	BitmapHedder.biBitCount    = 8;        // ï¼‘ãƒ”ã‚¯ã‚»ãƒ«å½“ãŸã‚Šã®ãƒ“ãƒƒãƒˆæ•°(8)
+	BitmapHedder.biCompression = 0;        // åœ§ç¸®å½¢å¼ï¼ˆï¼ï¼ç„¡ã—ï¼‰
+	BitmapHedder.biSizeImage   = 0;        // ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	BitmapHedder.biXPixPerMeter= 0;        // æ°´å¹³è§£åƒåº¦
+	BitmapHedder.biYPixPerMeter= 0;        // å‚ç›´è§£åƒåº¦
+	BitmapHedder.biClrUsed     = 256;      // ä½¿ç”¨è‰²æ•°
+	BitmapHedder.biClrImporant = 0;        // é‡è¦ãªè‰²ï¼Ÿ
 
-	//bitmapstr.palet[256][4]=;	//256FƒpƒŒƒbƒg
-	//01234567‚ğ‚R‚Q”{‚µ‚Ä0,32,64, 96,128,160,192,224
-	//0ˆÈŠO‚Ì‚Æ‚«A+31‚Å  0,63,95,127,159,191,223,255
-	// F‚Ì‡”Ô‚ÍBAGAR
+	//bitmapstr.palet[256][4]=;	//256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆ
+	//01234567ã‚’ï¼“ï¼’å€ã—ã¦0,32,64, 96,128,160,192,224
+	//0ä»¥å¤–ã®ã¨ãã€+31ã§  0,63,95,127,159,191,223,255
+	// è‰²ã®é †ç•ªã¯Bã€Gã€R
 	for(int lp=0 ; lp<256 ; lp++ )
 	{
 		BitmapHedder.palet[lp][0]=plette[lp*3];
@@ -231,7 +232,7 @@ void Set_BMPHedder(int _wide, int _height, unsigned char *plette )
 
 
 //************************************************************
-// BMPƒf[ƒ^•”İ’è
+// BMPãƒ‡ãƒ¼ã‚¿éƒ¨è¨­å®š
 //************************************************************
 void Set_BMPData(int data, int grwidth, int _xx, int _yy )
 {
@@ -239,5 +240,6 @@ void Set_BMPData(int data, int grwidth, int _xx, int _yy )
 }
 
 #define Set_BMPData(_data,grwidth,_xx,_yy)    BmpBuff[_yy*grwidth+_xx]=_data;
+
 
 
