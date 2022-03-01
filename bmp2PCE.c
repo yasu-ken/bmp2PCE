@@ -1,12 +1,8 @@
-/*
- * pceTOOL - to manipulate some attributes of pce files according to
- *           the special requirements of PC Engine developers
- */
 
-
-#define	MAX_X   1024  //512
-#define	MAX_Y   1024  //512
-#define	MAX_PAL 256
+//*******************************************************************************
+//bmp2PCE
+//
+//*******************************************************************************
 
 
 #include <stdio.h>
@@ -18,104 +14,51 @@
 #include "pce.c"
 
 
-//---------------------------------------
-// 
-//---------------------------------------
-/* and now for the program */
-
-void error(char *string, long pos)
-{
-	printf("\n");
-	printf(string);
-	printf("\n");
-	printf("At position %ld in file", pos);
-	printf("\n\n");
-	exit(1);
-}
-
-
-
-
-
+//***************************************
+// get parameter from FullPath.
+// Call this function first, then refer to sz ...
+//***************************************
 static char szDrive[_MAX_DRIVE];     //c:
-static char szDir[_MAX_DIR];         //mydocumentsV‚µ‚¢Ì«ÙÀŞ(7)test
+static char szDir[_MAX_DIR];         //ï¿¥mydocumentsï¿¥æ–°ã—ã„ï¾Œï½«ï¾™ï¾€ï¾(7)ï¿¥testï¿¥
 static char szFileName[_MAX_FNAME];  //test
 static char szExt[_MAX_EXT];         //.exe
 
-//---------------------------------------
-// ƒtƒ‹ƒpƒX‚©‚çŠg’£q–³‚µ‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ‚èo‚·
-//    ‚±‚ÌŠÖ”‚ğ‚Ü‚¸ŒÄ‚Ño‚µA‚ ‚Æ‚Ísz...‚ğQÆ‚·‚é
-//---------------------------------------
 char * splitFileName( char *szPath )
 {
 	//DWORD dwRet;
 
-	//ƒtƒ‹ƒpƒX–¼‚ğ•ªŠ„‚·‚é
+	//ãƒ•ãƒ«ãƒ‘ã‚¹åã‚’åˆ†å‰²ã™ã‚‹
 	_splitpath(szPath, szDrive, szDir, szFileName, szExt);
 
 	return (szFileName);
 }
 
+char * spritNext_GetFileName(){  return szFileName;  }
+char * spritNext_GetExt()     {  return szExt;  }
 
 
-//---------------------------------------
+//***************************************
 // 
-//---------------------------------------
-
-void init(void)
-{
-	int i;
-	int j;
-
-//	for (i = 0; i < MAX_PAL; i++)
-//	{
-//		palette_reference[i] = 0;
-//
-//		pal_r[i] = 0;
-//		pal_g[i] = 0;
-//		pal_b[i] = 0;
-//	}
-//
-//	//¦¦¦0xff‚Å‰Šú‰»‚µ‚Ü‚·
-//	//0xff‚Æ‚¢‚¤‚Ì‚ÍAˆ³kŒ`®‚Å1ƒoƒCƒg‚¸‚Â‚©‚È‚ç‚¸o—Í‚³‚ê‚éƒpƒ^[ƒ“‚Å‚·B
-//	//Œ³‰æ‘œ‚É‚È‚é‚×‚­ŠÜ‚Ü‚ê‚È‚¢‚æ‚¤‚É‰æ‘œ‚ğì‚é‚×‚«‚Å‚·‚ªA‚»‚ê‚Æ‚Í•Ê‚É
-//	//ˆ³k‚Ì‚Æ‚«A¶‚©‚ç1ƒoƒCƒg‚¸‚Â“¯‚¶‚©‚Ç‚¤‚©”äŠr‚µ‚Ä‚¢‚Ü‚·B
-//	//¶’[‚É’B‚µ‚½‚Æ‚«A‚ ‚ç‚©‚¶‚ßƒ[ƒƒNƒŠƒA‚µ‚Ä‚¢‚é‚ÆA‰E—×‚ªƒ[ƒ‚Ì‚Æ‚«Aƒ[ƒ‚ª˜A‘±‚µ‚Ä‚¢‚é‚Æ”»’f‚³‚ê‚Ü‚·B
-//	//0xff‚È‚ç‚»‚à‚»‚à˜A‘±‚µ‚Ü‚¹‚ñB‚¾‚©‚ç0xff‚Å‰Šú‰»‚µ‚Ä‚¨‚¢‚½‚Ù‚¤‚ª‚æ‚¢
-//	for (i = 0; i < MAX_X; i++)
-//	{
-//		for (j = 0; j < MAX_X; j++)
-//		{
-//			//pixel[i*MAX_X+j] = 0; //~
-//			pixel[i*MAX_X+j] = 0xff;
-//		}
-//	}
-}
-
-
-//---------------------------------------
-// 
-//---------------------------------------
+//***************************************
 
 void
 usage(void)
 {
-	printf("pce2bmp: Convert pce Graphic image to BMP or BMP to pce.\n\n");
+	printf("bmp2PCE: Convert BMP Graphic image to PCE ( or PCE to BMP).\n\n");
 	printf("Usage:\n\n");
-	printf("pcetool InputFileName OutputFileName\n\n");
-	printf("The combination of input / output files is fixed.\n\n");
-	printf("(ok)pcetool input.pce output.BMP\n");
-	printf("(ok)pcetool input.BMP output.pce\n");
-	printf("(no)pcetool input.pce output.pce\n");
-	printf("(no)pcetool input.BMP output.BMP\n");
-	printf("Input / output pce and BMP are 256-color palette images.\n");
+	printf("bmp2PCE -LXxx -LYxx infile.bmp <outfile.bin>\n\n");
+	printf("-LXxx  Sprite aeria X Length. default=16\n");
+	printf("-LYxx  Sprite aeria Y Length. default=16\n");
+	printf("infile.bmp   BMP Filename.\n");
+	printf("outfile.bin  Optional.\n");
+	printf("             In that case, the name of infile will be the file name.\n");
 	printf("\n");
 }
 
 
-//---------------------------------------
-// 
-//---------------------------------------
+//***************************************
+// Convert strings to numbers
+//***************************************
 
 int get_val(char *val)
 {
@@ -166,18 +109,19 @@ int get_val(char *val)
 }
 
 
+//***************************************
+//***************************************
+//bmpã‚’èª­ã¿è¾¼ã‚“ã§ã‹ã‚‰å®Ÿè¡Œã§ãã¾ã™
+//256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã®ã†ã¡ã€æœ€åˆã®16è‰²ã‚’pceã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ã—ã¦å‡ºåŠ›ã—ã¾ã™ã€‚
 
-//bmp‚ğ“Ç‚İ‚ñ‚Å‚©‚çÀs‚Å‚«‚Ü‚·
-//256FƒpƒŒƒbƒg‚Ì‚¤‚¿AÅ‰‚Ì16F‚ğpce‚ÌƒtƒH[ƒ}ƒbƒg‚É‚µ‚Äo—Í‚µ‚Ü‚·B
-
-	//pce‚WŠK’²‚ÌƒpƒŒƒbƒg‚ğ256ŠK’²‚É•ÏŠ·
+	//pceï¼˜éšèª¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’256éšèª¿ã«å¤‰æ›
 	//int palett_HenkanTbl[8]={0,63,95,127,159,191,223,255};
-	//BMPƒpƒŒƒbƒg 256x4 data ÂA—ÎAÔA—\–ñ(0)‚Ì‡”Ô
-	//PCEƒpƒŒƒbƒg (FEDCBA9876543210) H ---- ---G GGRR RBBB L
-	//int palett_HenkanTbl[8]={0,56,88,120,152,184,220,255};    //21/12/08 ƒtƒ‹ƒJƒ‰[‘Î‰
+	//BMPãƒ‘ãƒ¬ãƒƒãƒˆ 256x4 data é’ã€ç·‘ã€èµ¤ã€äºˆç´„(0)ã®é †ç•ª
+	//PCEãƒ‘ãƒ¬ãƒƒãƒˆ (FEDCBA9876543210) H ---- ---G GGRR RBBB L
+	//int palett_HenkanTbl[8]={0,56,88,120,152,184,220,255};    //21/12/08 ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼å¯¾å¿œ
 
-unsigned char PalWork[256][3];  // 1024 256FƒpƒŒƒbƒg
-unsigned short int PalWokW[256];  // word 256FƒpƒŒƒbƒg
+unsigned char PalWork[256][3];  // 1024 256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆ
+unsigned short int PalWokW[256];  // word 256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆ
 int PalCnt = 0;
 
 int palchg0_7(unsigned short int val )
@@ -196,34 +140,42 @@ int palchg0_7(unsigned short int val )
 }
 
 
-void Save_Palette( char *fname, int cnt )  //•Û‘¶‚·‚éƒpƒŒƒbƒg‚ÌŒÂ”
+//***************************************
+// Palette save.
+// cnt=1    0-15(16 pieces) pallet save from BMP 256 palette.
+// cnt=4    0-63(16x4 pieces) pallet save from BMP 256 palette.
+// cnt=16   0-255(16x16 pieces) pallet save from BMP 256 palette.
+//***************************************
+
+void Save_Palette( char *fname, int cnt )  //ä¿å­˜ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®å€‹æ•°
 {
 	int lp;
 
 	if((cnt > 16)||(cnt<1 ))return;
 
-	if( BitmapHedder.biBitCount == 8  ){  // 256ƒpƒŒƒbƒg
-		if( cnt > 16) cnt = 16;
+	if( BitmapHedder.biBitCount == 8  ){  // 256ãƒ‘ãƒ¬ãƒƒãƒˆ
+		if( cnt > 16) cnt =16;
 	}
-	else if ( BitmapHedder.biBitCount == 4 ){  //16F
+	else if ( BitmapHedder.biBitCount == 4 ){  //16è‰²
 		cnt = 1;
 	}
 	else {  //error
 		printf("Pallete save error.");
-		return;
+		exit(1);
 	}
 
 	//BGR(level256)--->BRG(level8)
 	for( lp=0; lp<(cnt*16); lp++ )
 	{
-		//0-255‚ğ0-7‚É
+		//0-255ã‚’0-7ã«
 		PalWork[lp][0] = palchg0_7( BitmapHedder.palet[lp][0]); //B
 		PalWork[lp][1] = palchg0_7( BitmapHedder.palet[lp][1]); //G
 		PalWork[lp][2] = palchg0_7( BitmapHedder.palet[lp][2]); //R
 	}
+
 	for( lp=0; lp<(cnt*16); lp++ )
 	{
-		PalWokW[lp] =    // word 256FƒpƒŒƒbƒg
+		PalWokW[lp] =    // word 256è‰²ãƒ‘ãƒ¬ãƒƒãƒˆ
 			//        B                 G               R
 			(unsigned short int )PalWork[lp][0] | ( PalWork[lp][1] << 6 ) | ( PalWork[lp][2] << 3 );
 	}
@@ -239,8 +191,6 @@ void Save_Palette( char *fname, int cnt )  //•Û‘¶‚·‚éƒpƒŒƒbƒg‚ÌŒÂ”
 	}
 
 	fwrite( PalWokW, (sizeof (short int)), cnt*16 , fp );
-
-	printf("Pallete •Û‘¶‚µ‚Ü‚µ‚½.");
 
 	fclose(fp);
 
@@ -268,7 +218,6 @@ int main( int argc, char ** argv )
 	int argcnt=0;
 	int filecnt=0;
 
-	init();
 	printf("argc = %d\n", argc);
 
 	for(int i=0; i<argc; i++ ){
@@ -284,11 +233,11 @@ int main( int argc, char ** argv )
 
 	for( argcnt=1; argcnt<argc ; argcnt++ )
 	{
-		//strncasecmp() ? ‘å/¬•¶š‚ğ‹æ•Ê‚µ‚È‚¢ƒXƒgƒŠƒ“ƒO‚Ì”äŠr
+		//strncasecmp() ? å¤§/å°æ–‡å­—ã‚’åŒºåˆ¥ã—ãªã„ã‚¹ãƒˆãƒªãƒ³ã‚°ã®æ¯”è¼ƒ
 
 		if (strncasecmp(argv[argcnt], "-h", 2) == 0)
 		{
-			printf("HELP o—Í\n");
+			printf("HELP\n");
 
 			usage();
 			exit(0);
@@ -309,22 +258,20 @@ int main( int argc, char ** argv )
 		{
 			LengY = get_val( &argv[argcnt][3] );
 		}
-
 		else if (strncasecmp(argv[argcnt], "-PAL", 4) == 0)
 		{
 			PalCnt = get_val( &argv[argcnt][4] );
 		}
 		else
 		{
-			if(filecnt==0)  //Å‰‚Ìƒtƒ@ƒCƒ‹–¼
+			if(filecnt==0)  //first Filename
 			{
 				strcpy( inputFilename , argv[argcnt] );
 
-				//BMPƒtƒ@ƒCƒ‹‚Ì‚Æ‚«
+				//BMP file then
 				if( ( NULL != strstr( inputFilename,".bmp" ))||
 					( NULL != strstr( inputFilename,".BMP" )))
 				{
-					printf("ok... FirstFileName%s\n", inputFilename);
 					inFileType=1;  //bmp
 				}
 				else{
@@ -333,15 +280,14 @@ int main( int argc, char ** argv )
 					exit(0);
 				}
 			}
-			else if(filecnt==1)  //‚QŒÂ‚ß‚Ìƒtƒ@ƒCƒ‹–¼
+			else if(filecnt==1)  //second file name
 			{
 				strcpy( outputFilename, argv[argcnt] );
 
-				//pceƒtƒ@ƒCƒ‹‚Ì‚Æ‚«
+				//pce file then
 				if( ( NULL != strstr( outputFilename,".bin" ))||
 					( NULL != strstr( outputFilename,".BIN" )))
 				{
-					printf("ok... SecondtFileName%s\n", outputFilename);
 					outFileType=2;  //pce
 				}
 				else{
@@ -363,24 +309,24 @@ int main( int argc, char ** argv )
 
 	//-----------------------------------
 
-	//³“–«ƒ`ƒFƒbƒN
-	if( inFileType == 0 )   //  “ü—Íƒtƒ@ƒCƒ‹–¼–³‚µ
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
+	if( inFileType == 0 )   //  å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«åç„¡ã—
 	{
 		printf("err... input File Name none.\n");
 		usage();
-		exit(0);
+		exit(1);
 	}
 
-	if( PalCnt == 0 )     // pal”w’è–³‚µ
+	if( PalCnt == 0 )     // palæ•°æŒ‡å®šç„¡ã—
 	{
-		PalCnt = 1;  //ˆê‚Â
+		PalCnt = 1;  //ä¸€ã¤
 	}
 
 
-	//“ü—Íƒtƒ@ƒCƒ‹–¼‚©‚çæ‚èo‚·
+	//input(first)file name full path --> split
 	splitFileName( inputFilename );
 
-	if( outFileType == 0 ){ //o—Íƒtƒ@ƒCƒ‹–¼–³‚µ
+	if( outFileType == 0 ){ //output file name does not exist.
 		strcpy( outputFilename, szFileName );
 		strcat( outputFilename,".bin");
 	}
@@ -406,16 +352,9 @@ int main( int argc, char ** argv )
 
 	//--------------------------------------------------
 
-	//BMP_PCE(
-	//	0,0,      // bmp“à¶ãxy
-	//	32,32 ); // ’·‚³Axy
 
-	BMP_PCE(TopX,TopY, LengX,LengY );
-
-	//write_PCE( outputFilename,
-	//	0,0,      // bmp“à¶ãxy
-	//	32,32 ); // ’·‚³Axy
-	//	//128,128 ); // ’·‚³Axy
+	BMP_PCE(TopX,TopY,      // UpLeft XY(in BMP)
+			LengX,LengY );  //Length XY(in BMP)
 
 	write_PCE( outputFilename,
 	           TopX,TopY, LengX,LengY );
