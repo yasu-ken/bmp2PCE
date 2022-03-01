@@ -1,5 +1,11 @@
 
-int GrWidth;  //“üo—Í‚µ‚æ‚¤‚Æ‚·‚é‰æ‘œ‚Ì•
+
+
+//***************************************
+//
+//***************************************
+
+int GrWidth;  //å…¥å‡ºåŠ›ã—ã‚ˆã†ã¨ã™ã‚‹ç”»åƒã®å¹…
 
 
 #define BUFFSIZE 0x10000
@@ -7,12 +13,14 @@ int GrWidth;  //“üo—Í‚µ‚æ‚¤‚Æ‚·‚é‰æ‘œ‚Ì•
 unsigned char BinBuffer[BUFFSIZE];
 int FileSize=0;
 
-//pce‚Ì‰æ‘œ‚Íƒf[ƒ^‚ðƒ[ƒhƒAƒNƒZƒX‚Ì‚½‚ß
+//pceã®ç”»åƒã¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹ã®ãŸã‚
 unsigned short *rom_ptr;
 
-//„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
-//ƒoƒCƒiƒŠ“Ç‚Ýž‚ÝŠÖ”
-//„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
+
+
+//***************************************
+//ãƒã‚¤ãƒŠãƒªèª­ã¿è¾¼ã¿é–¢æ•°
+//***************************************
 
 //int pce_Read(char *fname)
 //{
@@ -34,22 +42,22 @@ unsigned short *rom_ptr;
 //	fclose( fp );
 //
 //	rom_datacnt = 0x000;
-//	rom_ptr     = (unsigned short *)&romdata[rom_datacnt];     //ƒ[ƒhƒ|ƒCƒ“ƒ^
+//	rom_ptr     = (unsigned short *)&romdata[rom_datacnt];     //ãƒ¯ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿
 //
 //	return(0);
 //}
 
 
-//„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
-// ƒXƒvƒ‰ƒCƒg‚Ì•\Ž¦
-//rom•\Ž¦ƒAƒhƒŒƒX‚©‚ç0x2000ƒoƒCƒgi8x8ƒXƒvƒ‰ƒCƒg•ªj•\Ž¦
-//„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ„Ÿ
-//•\Ž¦ŠJŽn¶ãÀ•W
+//***************************************
+// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è¡¨ç¤º
+//romè¡¨ç¤ºã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰0x2000ãƒã‚¤ãƒˆï¼ˆ8x8ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆ†ï¼‰è¡¨ç¤º
+//***************************************
+//è¡¨ç¤ºé–‹å§‹å·¦ä¸Šåº§æ¨™
 #define DISP_RU_X 365
 #define DISP_RU_Y 40
 
-//•\Ž¦ˆÊ’uƒe[ƒuƒ‹
-//2x4 8ƒXƒvƒ‰ƒCƒg‚ÌxyˆÊ’uA1ƒ`ƒƒƒ“ƒN“à
+//è¡¨ç¤ºä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«
+//2x4 8ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®xyä½ç½®ã€1ãƒãƒ£ãƒ³ã‚¯å†…
 int sprt_chank[8][2]={
 	{  0,  0},		{ 16,  0},
 	{  0, 16},		{ 16, 16},
@@ -57,7 +65,7 @@ int sprt_chank[8][2]={
 	{  0, 48},		{ 16, 48}};
 
 
-//ƒXƒvƒ‰ƒCƒg‚ª‚±‚Ì‡”Ô‚É‚È‚é‚æ‚¤‚É•\Ž¦
+//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãŒã“ã®é †ç•ªã«ãªã‚‹ã‚ˆã†ã«è¡¨ç¤º
 // 00 01  10 11  20 21  30 31
 // 02 03  12 13  22 23  32 33
 // 04 05  14 15  24 25  34 35
@@ -67,10 +75,10 @@ int sprt_chank[8][2]={
 // 0C 0D  1C 1D  2C 2D  3C 3D
 // 0E 0F  1E 1F  2E 2F  3E 3F
 
-//16x16ƒhƒbƒg‚Ìì‹Æ—Ìˆæ
+//16x16ãƒ‰ãƒƒãƒˆã®ä½œæ¥­é ˜åŸŸ
 
-unsigned short  dot_wok[4][16];  //ƒXƒvƒ‰ƒCƒg1–‡•ªƒ[ƒNƒGƒŠƒA
-//unsigned short  dot_wok[64];  //ƒXƒvƒ‰ƒCƒg1–‡•ªƒ[ƒNƒGƒŠƒA
+unsigned short  dot_wok[4][16];  //ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ1æžšåˆ†ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢
+//unsigned short  dot_wok[64];  //ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ1æžšåˆ†ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢
 
 void make_1SPRITE( 
 	unsigned char  *src
@@ -87,21 +95,21 @@ void make_1SPRITE(
 
 	for(wok=0;wok<16;wok++)
 	{
-		dot_wok[0][wok] = 0;   // •‚ÅƒNƒŠƒA
-		dot_wok[1][wok] = 0;   // •‚ÅƒNƒŠƒA
-		dot_wok[2][wok] = 0;   // •‚ÅƒNƒŠƒA
-		dot_wok[3][wok] = 0;   // •‚ÅƒNƒŠƒA
+		dot_wok[0][wok] = 0;   // é»’ã§ã‚¯ãƒªã‚¢
+		dot_wok[1][wok] = 0;   // é»’ã§ã‚¯ãƒªã‚¢
+		dot_wok[2][wok] = 0;   // é»’ã§ã‚¯ãƒªã‚¢
+		dot_wok[3][wok] = 0;   // é»’ã§ã‚¯ãƒªã‚¢
 	}
 
-	// 16x16ƒhƒbƒg‚ðˆ—
-	// BMP‚Í1ƒhƒbƒg1ƒoƒCƒg
-	// pce‚Í16x16‚Å128ƒoƒCƒg
-	// BMP‚Ì1ƒhƒbƒg1ƒoƒCƒg‚Â‚Ü‚è8ƒrƒbƒg‚Å256‚Ì’l
-	// ‚±‚Ì‚¤‚¿0-15‚Ì16‚ðŽg—p‚·‚éB4ƒrƒbƒg‚Å‚·B‘¼‚Ìƒrƒbƒg‚ÍŽÌ‚Ä‚é
-	// 16x16ƒhƒbƒgx4ƒrƒbƒg‚Å 256x4ƒrƒbƒg 128x8ƒrƒbƒgA128ƒoƒCƒg‚Å‚·B
+	// 16x16ãƒ‰ãƒƒãƒˆã‚’å‡¦ç†
+	// BMPã¯1ãƒ‰ãƒƒãƒˆ1ãƒã‚¤ãƒˆ
+	// pceã¯16x16ã§128ãƒã‚¤ãƒˆ
+	// BMPã®1ãƒ‰ãƒƒãƒˆ1ãƒã‚¤ãƒˆã¤ã¾ã‚Š8ãƒ“ãƒƒãƒˆã§256ã®å€¤
+	// ã“ã®ã†ã¡0-15ã®16ã‚’ä½¿ç”¨ã™ã‚‹ã€‚4ãƒ“ãƒƒãƒˆã§ã™ã€‚ä»–ã®ãƒ“ãƒƒãƒˆã¯æ¨ã¦ã‚‹
+	// 16x16ãƒ‰ãƒƒãƒˆx4ãƒ“ãƒƒãƒˆã§ 256x4ãƒ“ãƒƒãƒˆ 128x8ãƒ“ãƒƒãƒˆã€128ãƒã‚¤ãƒˆã§ã™ã€‚
 
 	//--------
-	//c16ƒ‰ƒCƒ“‚Ìƒ‹[ƒv
+	//ç¸¦16ãƒ©ã‚¤ãƒ³ã®ãƒ«ãƒ¼ãƒ—
 	for( lp=0 ; lp<16 ; lp++ )  //yloop
 	{
 		plane0 = 0;
@@ -112,7 +120,7 @@ void make_1SPRITE(
 		bit0_15 = 0x8000;
 
 		//--------
-		//‰¡16ƒhƒbƒg
+		//æ¨ª16ãƒ‰ãƒƒãƒˆ
 
 		ptrsave = src;
 
@@ -120,7 +128,7 @@ void make_1SPRITE(
 		{
 			wok = *src;  //1byte low
 			src++;
-			//16F‚ÉƒRƒ“ƒo[ƒg
+			//16è‰²ã«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 			if(wok & 0x08) plane0 |= bit0_15;
 			if(wok & 0x04) plane1 |= bit0_15;
 			if(wok & 0x02) plane2 |= bit0_15;
@@ -133,7 +141,7 @@ void make_1SPRITE(
 		{
 			wok = *src;  //1byte high
 			src++;
-			//16F‚ÉƒRƒ“ƒo[ƒg
+			//16è‰²ã«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 			if(wok & 0x08) plane0 |= bit0_15;
 			if(wok & 0x04) plane1 |= bit0_15;
 			if(wok & 0x02) plane2 |= bit0_15;
@@ -147,10 +155,10 @@ void make_1SPRITE(
 		dot_wok[3][lp] = plane0; //16bit
 
 		src = ptrsave;   // pop
-		src += BmpWidth; // ƒ\[ƒXAnextƒ‰ƒCƒ“
+		src += BmpWidth; // ã‚½ãƒ¼ã‚¹ã€nextãƒ©ã‚¤ãƒ³
 
 	}
-	//c16dot(‰¡=8byte) = 16x8byte = 128ƒoƒCƒg(1ƒXƒvƒ‰ƒCƒg)
+	//ç¸¦16dot(æ¨ª=8byte) = 16x8byte = 128ãƒã‚¤ãƒˆ(1ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ)
 }
 
 
@@ -158,15 +166,17 @@ void make_1SPRITE(
 
 
 
-
+//***************************************
+// 
+//***************************************
 
 	//BmpWidth  =  BitmapHedder.biWidth;
 	//BmpHeight =  BitmapHedder.biHeight;
 	//ReadSize  =  BmpWidth* BmpHeight;
 
 void BMP_PCE(
-	int srcX, int srcY,        //bmp“à¶ãxy
-	int srcLenX, int srcLenY ) //’·‚³Axy
+	int srcX, int srcY,        //bmpå†…å·¦ä¸Šxy
+	int srcLenX, int srcLenY ) //é•·ã•ã€xy
 {
 	int lpx,lpy,i,j;
 	unsigned char *srcptr;
@@ -174,25 +184,25 @@ void BMP_PCE(
 	unsigned char *ptrsave;
 	unsigned char *orgsave;
 
-	srcptr = (unsigned char *)BmpBuff;  // bmp‰æ‘œƒoƒbƒtƒ@AˆêƒoƒCƒg1ƒrƒbƒg
-	srcptr += srcY*BmpWidth + srcX;     // ¶ãÀÊ‚ðŽ¦‚·ƒIƒtƒZƒbƒg
+	srcptr = (unsigned char *)BmpBuff;  // bmpç”»åƒãƒãƒƒãƒ•ã‚¡ã€ä¸€ãƒã‚¤ãƒˆ1ãƒ“ãƒƒãƒˆ
+	srcptr += srcY*BmpWidth + srcX;     // å·¦ä¸Šåº§ç¤ã‚’ç¤ºã™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	dstptr = (unsigned short *)&BinBuffer[0];              //“]‘—æAPCE‚Ì‰æ‘œƒtƒH[ƒ}ƒbƒg
+	dstptr = (unsigned short *)&BinBuffer[0];              //è»¢é€å…ˆã€PCEã®ç”»åƒãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
 
 
-	for( lpx=0 ;   ;lpx+=2 )            // “ñŒÂ‚¸‚Â‰E‚É‚¸‚ê‚Ä‚¢‚­
+	for( lpx=0 ;   ;lpx+=2 )            // äºŒå€‹ãšã¤å³ã«ãšã‚Œã¦ã„ã
 	{
 		orgsave = srcptr;
 
 		if( lpx*16 >= srcLenX )break;
 
-		//ƒWƒOƒUƒO‚Éc•ûŒü‚É•Û‘¶‚µ‚Ä‚¢‚­
+		//ã‚¸ã‚°ã‚¶ã‚°ã«ç¸¦æ–¹å‘ã«ä¿å­˜ã—ã¦ã„ã
 		for( lpy=0 ;  ;lpy++ )
 		{
 			ptrsave = srcptr;
 			if( lpy*16 >= srcLenY )break;
 
-			//‰¡‚É“ñŒÂˆ—
+			//æ¨ªã«äºŒå€‹å‡¦ç†
 			make_1SPRITE( srcptr );  //short dot_wok[256];
 			for( i=0; i<4; i++ ){
 				for( j=0; j<16; j++ ){
@@ -201,7 +211,7 @@ void BMP_PCE(
 				}
 			}
 
-			srcptr += 16;         //‰E‚É16ƒhƒbƒgˆÚ“®
+			srcptr += 16;         //å³ã«16ãƒ‰ãƒƒãƒˆç§»å‹•
 			make_1SPRITE( srcptr );  //short dot_wok[256];
 			for( i=0; i<4; i++ ){
 				for( j=0; j<16; j++ ){
@@ -211,25 +221,25 @@ void BMP_PCE(
 			}
 
 			srcptr = ptrsave;
-			srcptr += 16*BmpWidth;  //16ƒ‰ƒCƒ“•ªˆ—‚µ‚Ü‚µ‚½
+			srcptr += 16*BmpWidth;  //16ãƒ©ã‚¤ãƒ³åˆ†å‡¦ç†ã—ã¾ã—ãŸ
 		}
 		srcptr = orgsave;
-		srcptr += 32;  //‰¡32ƒhƒbƒg•ªˆ—‚µ‚Ü‚µ‚½
+		srcptr += 32;  //æ¨ª32ãƒ‰ãƒƒãƒˆåˆ†å‡¦ç†ã—ã¾ã—ãŸ
 	}
 
 }
-	//ƒ\[ƒXƒAƒhƒŒƒXŒvŽZ
-	//¶ã‚©‚çA•A‚‚³‚Ì—Ê‚ðˆ—‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-	//y‚Ìƒ‹[ƒv‚Å‚Í+16‚µ‚Ä‚¢‚Á‚ÄA‚‚³‚É’B‚µ‚½‚çAÅ‰‚Ìy‚É‚à‚Ç‚èA+32‚µ‚ÄŽŸ‚Ìˆ—
-	//x‚Ìƒ‹[ƒv‚Å‚ÍA+16‚µ‚Ä‚¢‚Á‚Ä“ñ‰ñˆ—‚µ‚½‚çŽŸ‚Ìy‚Ìˆ—‚Æ‚È‚è‚Ü‚·B
-	//‚½‚¾AÅŒã‚Ìx‚Ìƒ‰ƒCƒ“‚Å‚ÍÅIˆ—‚Ì‚ ‚ÆAŒÄ‚Ño‚µŒ³‚É•Ô‚è‚Ü‚·B
+	//ã‚½ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹è¨ˆç®—
+	//å·¦ä¸Šã‹ã‚‰ã€å¹…ã€é«˜ã•ã®é‡ã‚’å‡¦ç†ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+	//yã®ãƒ«ãƒ¼ãƒ—ã§ã¯+16ã—ã¦ã„ã£ã¦ã€é«˜ã•ã«é”ã—ãŸã‚‰ã€æœ€åˆã®yã«ã‚‚ã©ã‚Šã€+32ã—ã¦æ¬¡ã®å‡¦ç†
+	//xã®ãƒ«ãƒ¼ãƒ—ã§ã¯ã€+16ã—ã¦ã„ã£ã¦äºŒå›žå‡¦ç†ã—ãŸã‚‰æ¬¡ã®yã®å‡¦ç†ã¨ãªã‚Šã¾ã™ã€‚
+	//ãŸã ã€æœ€å¾Œã®xã®ãƒ©ã‚¤ãƒ³ã§ã¯æœ€çµ‚å‡¦ç†ã®ã‚ã¨ã€å‘¼ã³å‡ºã—å…ƒã«è¿”ã‚Šã¾ã™ã€‚
 
 
 
 void write_PCE(
 	char *binfname,
-	int srcX, int srcY,        // bmp“à¶ãxy
-	int srcLenX, int srcLenY ) // ’·‚³Axy
+	int srcX, int srcY,        // bmpå†…å·¦ä¸Šxy
+	int srcLenX, int srcLenY ) // é•·ã•ã€xy
 
 {
 	FILE *fp;
@@ -247,11 +257,11 @@ void write_PCE(
 	//BmpHeight =  BitmapHedder.biHeight;
 	//ReadSize  =  BmpWidth* BmpHeight;
 
-	xx = srcLenX/32;  // ‰¡32‚²‚Æ‚Éˆ—‚µ‚Ä‚¢‚é‚½‚ß
+	xx = srcLenX/32;  // æ¨ª32ã”ã¨ã«å‡¦ç†ã—ã¦ã„ã‚‹ãŸã‚
 
-	size = xx*2 * srcLenY/16;  //ƒXƒvƒ‰ƒCƒgŒÂ”
+	size = xx*2 * srcLenY/16;  //ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå€‹æ•°
 
-	//1ƒ}ƒC‚ÌƒXƒvƒ‰ƒCƒg‚Í128ƒoƒCƒg
+	//1ãƒžã‚¤ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¯128ãƒã‚¤ãƒˆ
 	fwrite( BinBuffer, 128, size, fp );
 
 	fclose(fp);
